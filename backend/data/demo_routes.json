@@ -1,0 +1,41 @@
+[
+  {
+    "route_id": "boston_nyc_safe",
+    "name": "I-95 South (Safe Route)",
+    "origin": {"lat": 42.3601, "lon": -71.0589, "name": "Boston, MA"},
+    "destination": {"lat": 40.7128, "lon": -74.0060, "name": "New York, NY"},
+    "distance_miles": 215,
+    "duration_minutes": 255,
+    "safety_grade": "A",
+    "max_risk_probability": 0.03,
+    "bridge_ids": ["bridge_005", "bridge_006", "bridge_007", "bridge_014"],
+    "route_geometry": "encoded_polyline_here",
+    "description": "Safe route via I-95 with all bridges having comfortable clearance"
+  },
+  {
+    "route_id": "boston_nyc_risky",
+    "name": "I-93 to Route 1 (Risky)",
+    "origin": {"lat": 42.3601, "lon": -71.0589, "name": "Boston, MA"},
+    "destination": {"lat": 40.7128, "lon": -74.0060, "name": "New York, NY"},
+    "distance_miles": 208,
+    "duration_minutes": 248,
+    "safety_grade": "D",
+    "max_risk_probability": 0.65,
+    "bridge_ids": ["bridge_008", "bridge_009", "bridge_013"],
+    "route_geometry": "encoded_polyline_here",
+    "description": "Shorter but has tight clearances at multiple points"
+  },
+  {
+    "route_id": "boston_nyc_fatal",
+    "name": "Storrow Drive Route (BLOCKED)",
+    "origin": {"lat": 42.3601, "lon": -71.0589, "name": "Boston, MA"},
+    "destination": {"lat": 40.7128, "lon": -74.0060, "name": "New York, NY"},
+    "distance_miles": 203,
+    "duration_minutes": 243,
+    "safety_grade": "F",
+    "max_risk_probability": 0.99,
+    "bridge_ids": ["bridge_002", "bridge_003", "bridge_004"],
+    "route_geometry": "encoded_polyline_here",
+    "description": "DANGEROUS: Storrow Drive has 10'6\" bridges. DO NOT USE."
+  }
+]

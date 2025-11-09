@@ -1,0 +1,60 @@
+[
+  {
+    "vehicle_id": "uhaul_10ft",
+    "name": "U-Haul 10' Truck",
+    "base_height_inches": 83,
+    "typical_mods": [
+      {"type": "none", "height_added": 0}
+    ],
+    "image_url": "/vehicles/uhaul_10.jpg"
+  },
+  {
+    "vehicle_id": "uhaul_15ft",
+    "name": "U-Haul 15' Truck",
+    "base_height_inches": 150,
+    "typical_mods": [
+      {"type": "roof_ac", "height_added": 8},
+      {"type": "antenna", "height_added": 4}
+    ],
+    "image_url": "/vehicles/uhaul_15.jpg"
+  },
+  {
+    "vehicle_id": "uhaul_20ft",
+    "name": "U-Haul 20' Truck",
+    "base_height_inches": 162,
+    "typical_mods": [
+      {"type": "roof_ac", "height_added": 8},
+      {"type": "antenna", "height_added": 4}
+    ],
+    "image_url": "/vehicles/uhaul_20.jpg"
+  },
+  {
+    "vehicle_id": "penske_16ft",
+    "name": "Penske 16' Truck",
+    "base_height_inches": 152,
+    "typical_mods": [
+      {"type": "roof_ac", "height_added": 6}
+    ],
+    "image_url": "/vehicles/penske_16.jpg"
+  },
+  {
+    "vehicle_id": "rv_class_a",
+    "name": "Class A RV",
+    "base_height_inches": 156,
+    "typical_mods": [
+      {"type": "antenna", "height_added": 8},
+      {"type": "ac_unit", "height_added": 10}
+    ],
+    "image_url": "/vehicles/rv_class_a.jpg"
+  },
+  {
+    "vehicle_id": "rv_class_c",
+    "name": "Class C RV",
+    "base_height_inches": 138,
+    "typical_mods": [
+      {"type": "antenna", "height_added": 6},
+      {"type": "ac_unit", "height_added": 8}
+    ],
+    "image_url": "/vehicles/rv_class_c.jpg"
+  }
+]
