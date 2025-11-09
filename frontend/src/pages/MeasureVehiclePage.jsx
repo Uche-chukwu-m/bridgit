@@ -660,8 +660,8 @@ function ResultsDisplay({ result, navigate }) {
             }
             
             try {
-              console.log('Calling navigate to /plan-route...');
-              navigate('/plan-route', { 
+              console.log('Calling navigate to /route...');
+              navigate('/route', { 
                 state: { 
                   vehicleHeight: totalHeight,
                   vehicleType: vehicleType,
