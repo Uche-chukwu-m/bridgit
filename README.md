@@ -365,16 +365,6 @@ BridgeGuardian uses **NVIDIA's Llama 3.1 Nemotron 70B Instruct** as its core AI 
 - Low latency enables responsive user experience
 - Parallel agent execution possible
 
-### 📊 Model Comparison
-
-| Capability | Nemotron 70B | GPT-4V | Claude 3.5 | Gemini Pro |
-|------------|--------------|---------|------------|------------|
-| Vision Analysis | ✅ Excellent | ✅ Excellent | ✅ Excellent | ✅ Good |
-| Structured JSON | ✅✅ **Best** | ✅ Good | ✅ Good | ⚠️ Inconsistent |
-| Safety Reasoning | ✅✅ **Conservative** | ✅ Balanced | ✅✅ Conservative | ✅ Balanced |
-| Cost (1M tokens) | **$0.53** | $10-60 | $3-15 | $1.25 |
-| Latency | **2-3s** | 4-6s | 3-5s | 2-4s |
-
 ### 🔬 Nemotron in Action
 
 **Vision Agent Example:**
@@ -642,6 +632,7 @@ bridgeguardian/
 - ✅ Route recommendations
 - ✅ Real-time weather impact
 - ✅ Interactive UI with map visualization
+- ✅ Community for Data aggregation and feedback
 
 ### Planned Features 🚧
 - 🚧 Live GPS tracking during route
@@ -663,12 +654,6 @@ bridgeguardian/
 
 ---
 
-## 📝 License
-
-This project is licensed under the MIT License.
-
----
-
 ## 🙏 Acknowledgments
 
 - **NVIDIA** - Nemotron AI platform
@@ -676,15 +661,3 @@ This project is licensed under the MIT License.
 - **Mapbox** - Geocoding & mapping
 - **LangGraph** - Agent orchestration framework
 
----
-
-## 📞 Support
-
-For issues or questions:
-- Open an issue on GitHub
-- Email: support@bridgeguardian.com
-- Documentation: [docs.bridgeguardian.com](https://docs.bridgeguardian.com)
-
----
-
-**Built with ❤️ to save lives and infrastructure**
