@@ -510,9 +510,16 @@ function ResultsDisplay({ result, navigate }) {
   const feetInches = result.total_height?.feet_inches || 
                      `${Math.floor(totalHeight / 12)}'${totalHeight % 12}"`;
   
-  const confidence = vehicleAnalysis.confidence || 
-                     measurements.confidence || 
-                     0.75; // Default 75% confidence
+  let confidence = vehicleAnalysis.confidence || 
+                   measurements.confidence || 
+                   result.confidence?.overall ||
+                   result.confidence ||
+                   0.75; // Default 75% confidence
+  
+  // Ensure confidence is a valid number between 0 and 1
+  if (typeof confidence !== 'number' || isNaN(confidence) || confidence <= 0 || confidence > 1) {
+    confidence = 0.75;
+  }
   
   console.log('ResultsDisplay - Parsed data:', { 
     totalHeight,
@@ -565,7 +572,7 @@ function ResultsDisplay({ result, navigate }) {
                 {baseHeight}"
               </span>
               <p className="text-xs text-gray-500">
-                Confidence: {Math.round(confidence * 100)}%
+                Confidence: {Math.round((confidence || 0.75) * 100)}%
               </p>
             </div>
           </div>
@@ -584,7 +591,7 @@ function ResultsDisplay({ result, navigate }) {
                   </span>
                   {item.confidence && (
                     <p className="text-xs text-gray-500">
-                      {Math.round((item.confidence || 0.8) * 100)}% confident
+                      {Math.round((typeof item.confidence === 'number' && !isNaN(item.confidence) ? item.confidence : 0.8) * 100)}% confident
                     </p>
                   )}
                 </div>
@@ -635,7 +642,7 @@ function ResultsDisplay({ result, navigate }) {
 
       {/* Confidence */}
       <div className="mt-6 text-center text-sm text-gray-500">
-        Confidence: {((result.confidence?.overall || result.confidence) * 100).toFixed(0)}%
+        Confidence: {Math.round((confidence || 0.75) * 100)}%
       </div>
 
       {/* Action Buttons */}
