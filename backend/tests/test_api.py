@@ -82,6 +82,8 @@ def test_trip_still_returns_routes_when_the_double_check_is_unavailable(client, 
     trip = response.json()
     assert trip["checked"] is False
     assert trip["recommended"] == 0 and len(trip["routes"]) == 2
+    # Never "clear" when nothing was checked.
+    assert {r["verdict"] for r in trip["routes"]} == {"unchecked"}
 
 
 def test_trip_says_when_no_route_fits(client, services):

@@ -34,7 +34,7 @@ class Clearance(BaseModel):
 class RouteOption(BaseModel):
     distance_m: float
     duration_s: float
-    verdict: Literal["clear", "caution", "unsafe"]
+    verdict: Literal["clear", "caution", "unsafe", "unchecked"]
     geometry: list[tuple[float, float]]
     clearances: list[Clearance]
 

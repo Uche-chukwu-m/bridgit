@@ -16,7 +16,7 @@ from .routing import fetch_routes
 log = logging.getLogger(__name__)
 
 DISPLAY_TOLERANCE_M = 2
-_VERDICT_RANK = {"clear": 0, "caution": 1, "unsafe": 2}
+_VERDICT_RANK = {"clear": 0, "unchecked": 1, "caution": 1, "unsafe": 2}
 
 
 async def plan_trip(client: httpx.AsyncClient, settings: Settings, request: TripRequest) -> Trip:
@@ -53,7 +53,14 @@ async def plan_trip(client: httpx.AsyncClient, settings: Settings, request: Trip
                 osm_url=r.osm_url,
             ))
         statuses = {c.status for c in clearances}
-        verdict = "unsafe" if "blocked" in statuses else "caution" if "tight" in statuses else "clear"
+        if not checked:
+            verdict = "unchecked"
+        elif "blocked" in statuses:
+            verdict = "unsafe"
+        elif "tight" in statuses:
+            verdict = "caution"
+        else:
+            verdict = "clear"
         options.append(RouteOption(
             distance_m=round(route.distance_m, 1),
             duration_s=round(route.duration_s),
