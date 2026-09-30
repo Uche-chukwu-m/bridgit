@@ -10,7 +10,7 @@ from agents.agent_graph import run_agent_workflow
 
 load_dotenv()
 
-app = FastAPI(title="BridgeGuardian API")
+app = FastAPI(title="Bridgit API")
 
 # CORS
 app.add_middleware(
@@ -105,7 +105,7 @@ def call_nemotron(prompt: str, image_base64: Optional[str] = None) -> str:
 
 @app.get("/")
 def root():
-    return {"status": "BridgeGuardian API running", "version": "1.0.0"}
+    return {"status": "Bridgit API running", "version": "1.0.0"}
 
 @app.post("/analyze-vehicle", response_model=AnalyzeVehicleResponse)
 async def analyze_vehicle(

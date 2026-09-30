@@ -1,4 +1,4 @@
-# BridgeGuardian 🌉
+# Bridgit 🌉
 
 AI-powered vehicle measurement and route planning system to prevent bridge strikes. Uses computer vision and multi-agent AI to analyze vehicle height, find nearby bridges, and recommend safe routes.
 
@@ -6,7 +6,7 @@ AI-powered vehicle measurement and route planning system to prevent bridge strik
 
 ## 🎯 Overview
 
-BridgeGuardian prevents the **1,000+ yearly bridge strikes** that cause $300M+ in damage by:
+Bridgit prevents the **1,000+ yearly bridge strikes** that cause $300M+ in damage by:
 1. **Measuring** vehicle height using AI vision analysis
 2. **Finding** nearby low-clearance bridges 
 3. **Planning** safe routes that avoid dangerous bridges
@@ -78,7 +78,7 @@ AgentState = {
 
 ## 🚀 Why NVIDIA Nemotron?
 
-BridgeGuardian uses **NVIDIA's Llama 3.1 Nemotron 70B Instruct** as its core AI model for vision analysis and reasoning. Here's why we chose Nemotron over alternatives like GPT-4, Claude, or Gemini:
+Bridgit uses **NVIDIA's Llama 3.1 Nemotron 70B Instruct** as its core AI model for vision analysis and reasoning. Here's why we chose Nemotron over alternatives like GPT-4, Claude, or Gemini:
 
 ### 🎯 Key Advantages
 
@@ -157,7 +157,7 @@ For complete proof of NVIDIA Nemotron usage, see [NEMOTRON_VERIFICATION.md](NEMO
 #### 1. Clone & Setup Environment
 ```bash
 git clone <repo-url>
-cd bridgeguardian
+cd bridgit
 
 # Create Python virtual environment
 python -m venv venv

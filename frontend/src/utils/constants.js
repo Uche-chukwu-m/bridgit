@@ -1,5 +1,5 @@
 /**
- * Shared constants for BridgeGuardian application
+ * Shared constants for Bridgit application
  */
 
 /**

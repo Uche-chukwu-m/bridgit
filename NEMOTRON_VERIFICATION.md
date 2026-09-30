@@ -1,6 +1,6 @@
 # NVIDIA Nemotron Model Verification
 
-This document provides comprehensive proof that BridgeGuardian uses **NVIDIA's Nemotron 70B Instruct** model for all AI-powered analysis.
+This document provides comprehensive proof that Bridgit uses **NVIDIA's Nemotron 70B Instruct** model for all AI-powered analysis.
 
 ---
 
@@ -196,7 +196,7 @@ x-ratelimit-remaining-requests: 999
 
 ## 🎯 Where Nemotron is Used
 
-BridgeGuardian uses NVIDIA Nemotron in **4 out of 7 agents**:
+Bridgit uses NVIDIA Nemotron in **4 out of 7 agents**:
 
 | Agent # | Agent Name | Uses Nemotron? | Purpose |
 |---------|------------|----------------|---------|
@@ -413,7 +413,7 @@ Testing Recommendation Agent...
 
 ---
 
-## 🏆 Unique Nemotron Advantages for BridgeGuardian
+## 🏆 Unique Nemotron Advantages for Bridgit
 
 ### 1. **Instruction Following**
 Nemotron reliably follows complex prompt structures:
@@ -465,7 +465,7 @@ Nemotron maintains context across complex state:
 
 ## ✅ Verification Checklist
 
-To verify BridgeGuardian uses NVIDIA Nemotron:
+To verify Bridgit uses NVIDIA Nemotron:
 
 - [x] Check `backend/agents/vehicle_agents.py` for model identifier
 - [x] Verify `base_url="https://integrate.api.nvidia.com/v1"`

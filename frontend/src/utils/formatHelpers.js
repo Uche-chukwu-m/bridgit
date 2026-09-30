@@ -1,5 +1,5 @@
 /**
- * Shared formatting utilities for BridgeGuardian
+ * Shared formatting utilities for Bridgit
  */
 
 /**

@@ -1,5 +1,5 @@
 /**
- * Bridge clearance and safety utilities for BridgeGuardian
+ * Bridge clearance and safety utilities for Bridgit
  */
 
 import { CLEARANCE_THRESHOLDS } from './constants';

@@ -1,11 +1,9 @@
 # Bridgit - Devpost Submission
 
 ## Inspiration
-In high school, I witnessed the most traumatic event of my life. Coming back from school, a fuel tanker speeding at around 60 mph slammed into a bridge that was too low for it. For a second, it felt like a movie—then a blinding flash. The tanker exploded. Lives were lost. That moment made me realize how a simple lack of awareness about vehicle height and bridge clearance could turn an ordinary trip into a tragedy.
+Bridge strikes happen far more often than people think—thousands of times per year in the US alone, causing millions in damage, traffic disruptions, and sometimes catastrophic accidents. The problem isn't just inexperienced drivers; it's that most people driving rental trucks, RVs, or commercial vehicles simply don't know their exact height, especially after adding roof equipment like AC units, antennas, or ladder racks.
 
-That experience haunted me for years. I learned that bridge strikes happen far more often than people think—thousands of times per year in the US alone, causing millions in damage, traffic disruptions, and sometimes catastrophic accidents. The problem isn't just inexperienced drivers; it's that most people driving rental trucks, RVs, or commercial vehicles simply don't know their exact height, especially after adding roof equipment like AC units, antennas, or ladder racks.
-
-Bridgit was born from a simple question: **What if we could prevent these tragedies using AI?**
+Bridgit was born from a simple question: **What if we could prevent these accidents using AI?**
 
 ## What it does
 Bridgit is a comprehensive AI-powered safety platform that prevents bridge strikes through three core features:
@@ -245,22 +243,17 @@ Building something that could genuinely save lives. Every bridge strike prevente
 
 ### **Personal Learnings**
 
-1. **Technology Can Honor Tragedy**
-   - My high school experience motivated this project
-   - Building tools that prevent future tragedies is meaningful work
-   - Code can save lives
-
-2. **Hackathons Force Prioritization**
+1. **Hackathons Force Prioritization**
    - Can't build everything—focus on core value
    - MVP first, polish later
    - Working demo beats perfect documentation
 
-3. **Collaboration Amplifies Impact**
+2. **Collaboration Amplifies Impact**
    - LangGraph community examples helped debug agents
    - NVIDIA API documentation enabled quick integration
    - Open source tools (React, FastAPI, OSM) made this possible
 
-4. **Users Don't Read Instructions**
+3. **Users Don't Read Instructions**
    - Design must be intuitive
    - Errors must be self-explanatory
    - Warnings must be impossible to miss

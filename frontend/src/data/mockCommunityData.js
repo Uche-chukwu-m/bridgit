@@ -496,7 +496,7 @@ export const mockActivityFeed = [
 export const mockLeaderboard = [
   {
     rank: 1,
-    username: 'BridgeGuardian_Pro',
+    username: 'Bridgit_Pro',
     contributions: 247,
     verifications: 156,
     photos_uploaded: 91,
