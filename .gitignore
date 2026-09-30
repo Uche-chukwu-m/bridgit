@@ -1,9 +1,9 @@
 node_modules/
+dist/
 .env
 __pycache__/
 *.pyc
 venv/
-.env.example
 .venv/
 .claude/
 .vite
