@@ -11,7 +11,10 @@ export default function PlaceSearch({ label, value, onChange, allowCurrentLocati
   const [locating, setLocating] = useState(false);
   const typed = useRef(false);
 
-  useEffect(() => setText(value?.label ?? ''), [value]);
+  // Show a chosen place's name; clearing the choice (because the user is typing) leaves their text alone.
+  useEffect(() => {
+    if (value) setText(value.label);
+  }, [value]);
 
   useEffect(() => {
     if (!typed.current || text.trim().length < 3) {
