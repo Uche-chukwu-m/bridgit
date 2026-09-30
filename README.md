@@ -1,224 +1,92 @@
-# BridgeGuardian 🌉
+# Bridgit
 
-AI-powered vehicle measurement and route planning system to prevent bridge strikes. Uses computer vision and multi-agent AI to analyze vehicle height, find nearby bridges, and recommend safe routes.
+**Know your height. Get a route that fits.**
 
----
+Every year, trucks, RVs and rental vans hit bridges that are too low for them, usually because the
+driver didn't know their exact height, or their GPS didn't care. Bridgit asks one question, how
+tall is your vehicle, and finds a route that clears every low bridge it knows about. Then it
+warns you out loud as you approach each one.
 
-## 🎯 Overview
+## How it works
 
-BridgeGuardian prevents the **1,000+ yearly bridge strikes** that cause $300M+ in damage by:
-1. **Measuring** vehicle height using AI vision analysis
-2. **Finding** nearby low-clearance bridges 
-3. **Planning** safe routes that avoid dangerous bridges
-4. **Alerting** drivers in real-time about upcoming hazards
+1. **Vehicle.** Enter your height in feet and inches, and how much extra room to leave (3″ by
+   default). If you're unsure, a photo gives a rough range and Bridgit plans with the high end.
+2. **Plan.** Bridgit asks [Valhalla](https://github.com/valhalla/valhalla), an open-source
+   router, for a truck route at your height plus margin. Valhalla reads the height limits in
+   [OpenStreetMap](https://www.openstreetmap.org) and won't use a road you can't fit under.
+3. **Double-check.** Bridgit then looks up every height restriction along each route through
+   [Overpass](https://overpass-api.de), works out which ones the route really drives under (not
+   bridges it crosses over), and compares each with your height using plain arithmetic. You see
+   every clearance on the route, with how much room you have.
+4. **Drive.** Follow the route with your phone's GPS. Bridgit speaks up a mile before each low
+   clearance and again at a quarter mile, and tells you if you leave the checked route.
 
----
+No AI is involved in deciding whether you fit. The photo estimate is the only AI feature, and it
+is optional.
 
-## 🏗️ Architecture & Data Flow
+## Run it
 
-### High-Level Flow
-```
-User uploads vehicle photo → Frontend → Backend API → Multi-Agent System → Response
-                                ↓
-                          Computer Vision
-                                ↓
-                          Agent Workflow
-                                ↓
-                    7 Specialized AI Agents
-```
+You need Python 3.11+ and Node 18+. No API keys are needed.
 
----
-
-
-## 📊 State Management
-
-All agents share a common state object that flows through the workflow:
-
-```python
-AgentState = {
-    # Input
-    "image_base64": str,
-    "user_location": str,
-    
-    # Agent 1: Vision
-    "vehicle_detected": bool,
-    "vehicle_type": str,
-    "visual_detections": list,
-    
-    # Agent 2: Measurement
-    "total_height_inches": int,
-    "roof_equipment": list,
-    
-    # Agent 3: Location
-    "location_coords": {"lat": float, "lon": float},
-    
-    # Agent 4: Bridges
-    "nearby_bridges": list,
-    "bridge_count": int,
-    
-    # Agent 5: Weather
-    "weather_conditions": dict,
-    "clearance_adjustment": int,
-    
-    # Agent 6: Risk
-    "dangerous_bridges": list,
-    "risk_level": str,
-    
-    # Agent 7: Recommendations
-    "recommendations": list,
-    "final_report": str,
-    
-    # Metadata
-    "agent_log": list,
-    "errors": list
-}
-```
-
----
-
-## 🚀 Why NVIDIA Nemotron?
-
-BridgeGuardian uses **NVIDIA's Llama 3.1 Nemotron 70B Instruct** as its core AI model for vision analysis and reasoning. Here's why we chose Nemotron over alternatives like GPT-4, Claude, or Gemini:
-
-### 🎯 Key Advantages
-
-#### 1. **Multimodal Vision + Reasoning**
-- Single model handles both image analysis AND complex reasoning
-- Analyzes vehicle photos to extract height measurements using visual reference objects
-- Combines visual data with database knowledge for accurate estimates
-
-#### 2. **Superior Structured Output**
-- Consistently produces valid, well-formatted JSON (critical for agent workflows)
-- Follows complex prompt instructions with high fidelity
-- Minimal parsing errors compared to other models
-
-#### 3. **Safety-Critical Performance**
-- Conservative risk assessment aligns with bridge strike prevention mission
-- Detailed reasoning traces for every decision (explainable AI)
-- Uncertainty quantification built into outputs
-
-### 🔍 Verification
-
-For complete proof of NVIDIA Nemotron usage, see [NEMOTRON_VERIFICATION.md](NEMOTRON_VERIFICATION.md), which includes:
-- API endpoint evidence
-- Model identifier in code
-- Sample API responses
-- Network request verification
-- Usage statistics
-- Comparative analysis
-
----
-
-## 🛠️ Technology Stack
-
-### Frontend
-- **React** - UI framework
-- **Vite** - Build tool
-- **Tailwind CSS** - Styling
-- **React Router** - Navigation
-- **Axios** - HTTP client
-- **Mapbox GL** - Map visualization
-
-### Backend
-- **FastAPI** - API framework
-- **LangGraph** - Agent orchestration
-- **OpenAI SDK** - NVIDIA Nemotron API client
-- **Pydantic** - Data validation
-- **python-dotenv** - Environment config
-
-### AI & ML
-- **NVIDIA Nemotron** - Vision & reasoning LLM
-  - Model: `nvidia/llama-3.1-nemotron-70b-instruct`
-  - Vision-capable for vehicle analysis
-  - Reasoning for risk assessment
-
-### External APIs
-- **Mapbox Geocoding** - Location → GPS
-- **OpenStreetMap Overpass** - Bridge database
-- **OpenWeather** - Weather conditions
-
----
-
-## 🚀 Getting Started
-
-### Prerequisites
 ```bash
-# Backend
-- Python 3.12+
-- NVIDIA API Key (from build.nvidia.com)
-
-# Frontend
-- Node.js 18+
-- npm or yarn
-```
-
-### Installation
-
-#### 1. Clone & Setup Environment
-```bash
-git clone <repo-url>
-cd bridgeguardian
-
-# Create Python virtual environment
-python -m venv venv
-source venv/bin/activate  # Windows: venv\Scripts\activate
-
-# Install backend dependencies
+# Backend: http://localhost:8000
 cd backend
-pip install -r requirements.txt
-```
+python -m venv .venv && source .venv/bin/activate
+pip install -r requirements-dev.txt
+uvicorn app.main:app --reload
 
-#### 2. Configure Environment Variables
-```bash
-# backend/.env
-NVIDIA_API_KEY=your_nvidia_api_key_here
-MAPBOX_API_KEY=your_mapbox_key  # Optional
-OPENWEATHER_API_KEY=your_key    # Optional
-```
-
-#### 3. Install Frontend Dependencies
-```bash
-cd ../frontend
+# Frontend: http://localhost:5173 (in a second terminal)
+cd frontend
 npm install
+npm run dev
 ```
----
 
-## 🎨 Features
+**Tests:** run `pytest` in `backend/` and `npm test` in `frontend/`.
 
-### Current Features ✅
-- ✅ AI-powered vehicle height measurement
-- ✅ Multi-agent workflow orchestration
-- ✅ Bridge database querying (OSM)
-- ✅ Risk assessment & classification
-- ✅ Route recommendations
-- ✅ Real-time weather impact
-- ✅ Interactive UI with map visualization
-- ✅ Community for Data aggregation and feedback
+**One-server deploy:** run `npm run build` in `frontend/`, then start the backend with
+`uvicorn app.main:app --host 0.0.0.0`. The backend serves the built app and the API together.
 
-### Planned Features 🚧
-- 🚧 Live GPS tracking during route
-- 🚧 Real-time alerts (escalating warnings)
-- 🚧 Historical incident database
-- 🚧 Mobile app (React Native)
-- 🚧 Fleet management dashboard
-- 🚧 Integration with trucking GPS systems
+## Configuration
 
----
+Bridgit works out of the box against public OpenStreetMap services. Copy
+`backend/.env.example` to `backend/.env` to change anything.
 
-## 🤝 Contributing
+| Variable | Default | What it's for |
+| --- | --- | --- |
+| `VALHALLA_URL` | `https://valhalla1.openstreetmap.de` | Routing |
+| `OVERPASS_URL` | `https://overpass-api.de/api/interpreter` | Height restrictions |
+| `PHOTON_URL` | `https://photon.komoot.io` | Place search |
+| `VISION_API_KEY` | none | Turns on photo estimates |
+| `VISION_API_URL` | `https://integrate.api.nvidia.com/v1` | Any OpenAI-compatible API |
+| `VISION_MODEL` | `meta/llama-3.2-90b-vision-instruct` | Must accept images |
 
-1. Fork the repository
-2. Create feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit changes (`git commit -m 'Add amazing feature'`)
-4. Push to branch (`git push origin feature/amazing-feature`)
-5. Open Pull Request
+The frontend reads `VITE_TILE_URL` for map tiles (OpenStreetMap's by default).
 
----
+The public servers are free, shared and rate limited. They're fine for trying Bridgit out, but run
+your own Valhalla and Overpass for anything more.
 
-## 🙏 Acknowledgments
+## Limits
 
-- **NVIDIA** - Nemotron AI platform
-- **OpenStreetMap** - Bridge data
-- **Mapbox** - Geocoding & mapping
-- **LangGraph** - Agent orchestration framework
+Bridgit is only as good as OpenStreetMap's height data. That data is excellent in some places and
+missing in others. A clearance nobody has mapped is a clearance Bridgit can't see. Posted signs
+always win. If a sign says you won't fit, don't try.
 
+## Layout
+
+```
+backend/app/
+  main.py          API routes; also serves the built frontend
+  trip.py          plan a trip: route, then double-check every clearance
+  routing.py       Valhalla client
+  restrictions.py  Overpass client, and matching restrictions to the route
+  clearance.py     reading OSM height tags; "does it fit?"
+  geo.py           polyline and distance maths
+  places.py        Photon place search
+  photo.py         optional photo height estimate
+frontend/src/
+  pages/           VehiclePage, PlanPage, DrivePage
+  components/      map, clearance sign, place search, ...
+  lib/             route maths, alerts, formatting, API client
+```
+
+Write-ups from the original hackathon version are in [docs/archive](docs/archive).
